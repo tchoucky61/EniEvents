@@ -9,6 +9,11 @@ namespace Bo
 {
     public class User: IIdentifiable
     {
+        public User()
+        {
+            this.Events = new List<Event>();
+        }
+
         /* Attributes */
         public int Id
         {

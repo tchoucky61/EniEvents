@@ -10,6 +10,11 @@ namespace Dal
 {
     public class Context : DbContext, IDbContext
     {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Event> Events
         {
             get; set;

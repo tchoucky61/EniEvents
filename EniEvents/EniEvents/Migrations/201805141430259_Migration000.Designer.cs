@@ -7,13 +7,13 @@ namespace EniEvents.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ThirdMigration : IMigrationMetadata
+    public sealed partial class Migration000 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ThirdMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Migration000));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805141405016_ThirdMigration"; }
+            get { return "201805141430259_Migration000"; }
         }
         
         string IMigrationMetadata.Source
