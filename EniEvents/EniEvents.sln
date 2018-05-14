@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EniEvents", "EniEvents\EniE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bo", "Bo\Bo.csproj", "{7D22E427-FE37-42E4-9743-D96780835ACF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{D1F871B4-F51D-422C-B163-01AA6D04F72E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7D22E427-FE37-42E4-9743-D96780835ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D22E427-FE37-42E4-9743-D96780835ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D22E427-FE37-42E4-9743-D96780835ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1F871B4-F51D-422C-B163-01AA6D04F72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F871B4-F51D-422C-B163-01AA6D04F72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F871B4-F51D-422C-B163-01AA6D04F72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F871B4-F51D-422C-B163-01AA6D04F72E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

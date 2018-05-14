@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bo;
 
 namespace Bo
 {
-    class User: IIdentifiable
+    public class User: IIdentifiable
     {
         /* Attributes */
         public int Id
@@ -50,12 +51,6 @@ namespace Bo
         }
 
         public virtual List<Event> Events
-        {
-            get; set;
-        }
-
-
-        public virtual List<Role> roles
         {
             get; set;
         }

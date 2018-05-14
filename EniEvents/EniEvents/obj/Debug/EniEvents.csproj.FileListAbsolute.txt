@@ -77,6 +77,5 @@ D:\EniEvents\EniEvents\EniEvents\bin\Microsoft.Owin.Security.OAuth.xml
 D:\EniEvents\EniEvents\EniEvents\bin\Microsoft.Owin.Security.Google.xml
 D:\EniEvents\EniEvents\EniEvents\bin\Microsoft.Owin.Security.Twitter.xml
 D:\EniEvents\EniEvents\EniEvents\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.csprojResolveAssemblyReference.cache
 D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.dll
 D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.pdb

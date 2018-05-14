@@ -1,1 +1,5 @@
 D:\Projet\EniEvents\Bo\obj\Debug\Bo.csprojResolveAssemblyReference.cache
+D:\EniEvents\EniEvents\Bo\bin\Debug\Bo.dll
+D:\EniEvents\EniEvents\Bo\bin\Debug\Bo.pdb
+D:\EniEvents\EniEvents\Bo\obj\Debug\Bo.dll
+D:\EniEvents\EniEvents\Bo\obj\Debug\Bo.pdb

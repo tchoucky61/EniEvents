@@ -41,12 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="Picture.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Thema.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
