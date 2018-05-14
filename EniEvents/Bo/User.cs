@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bo
 {
-    class User: IIdentifiable
+    public class User: IIdentifiable
     {
         /* Attributes */
         public int Id
@@ -50,12 +50,6 @@ namespace Bo
         }
 
         public virtual List<Event> Events
-        {
-            get; set;
-        }
-
-
-        public virtual List<Role> roles
         {
             get; set;
         }
