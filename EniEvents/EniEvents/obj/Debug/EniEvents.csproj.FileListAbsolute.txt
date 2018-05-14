@@ -105,3 +105,6 @@ D:\EniEvents\EniEvents\EniEvents\bin\fr\Microsoft.Owin.Security.MicrosoftAccount
 D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.csprojResolveAssemblyReference.cache
 D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.Migrations.FirstMigration.resources
 D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.csproj.GenerateResource.Cache
+D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.Migrations.SecondMigration.resources
+D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.Migrations.ThirdMigration.resources
+D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.Migrations.FourthMigration.resources

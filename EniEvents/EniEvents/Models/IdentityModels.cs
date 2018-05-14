@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Bo;
 
 namespace EniEvents.Models
 {
@@ -28,6 +29,26 @@ namespace EniEvents.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        public DbSet<Event> Events
+        {
+            get; set;
+        }
+
+        public DbSet<Picture> Pictures
+        {
+            get; set;
+        }
+
+        public DbSet<Thema> Themas
+        {
+            get; set;
+        }
+
+        public DbSet<User> Users
+        {
+            get; set;
         }
     }
 }

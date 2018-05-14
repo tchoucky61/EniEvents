@@ -196,14 +196,30 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\ThemaController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201805141259214_FirstMigration.cs" />
     <Compile Include="Migrations\201805141259214_FirstMigration.Designer.cs">
       <DependentUpon>201805141259214_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805141401099_SecondMigration.cs" />
+    <Compile Include="Migrations\201805141401099_SecondMigration.Designer.cs">
+      <DependentUpon>201805141401099_SecondMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805141405016_ThirdMigration.cs" />
+    <Compile Include="Migrations\201805141405016_ThirdMigration.Designer.cs">
+      <DependentUpon>201805141405016_ThirdMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805141411473_FourthMigration.cs" />
+    <Compile Include="Migrations\201805141411473_FourthMigration.Designer.cs">
+      <DependentUpon>201805141411473_FourthMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -272,6 +288,26 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Event\Create.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
+    <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Event\Edit.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Picture\Create.cshtml" />
+    <Content Include="Views\Picture\Delete.cshtml" />
+    <Content Include="Views\Picture\Details.cshtml" />
+    <Content Include="Views\Picture\Edit.cshtml" />
+    <Content Include="Views\Picture\Index.cshtml" />
+    <Content Include="Views\Thema\Create.cshtml" />
+    <Content Include="Views\Thema\Delete.cshtml" />
+    <Content Include="Views\Thema\Details.cshtml" />
+    <Content Include="Views\Thema\Edit.cshtml" />
+    <Content Include="Views\Thema\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -297,6 +333,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805141259214_FirstMigration.resx">
       <DependentUpon>201805141259214_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805141401099_SecondMigration.resx">
+      <DependentUpon>201805141401099_SecondMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805141405016_ThirdMigration.resx">
+      <DependentUpon>201805141405016_ThirdMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805141411473_FourthMigration.resx">
+      <DependentUpon>201805141411473_FourthMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
