@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace Dal
 {
     public interface IRepository<T> where T : IIdentifiable
     {

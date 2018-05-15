@@ -14,6 +14,5 @@ namespace Bo
         public string Uri { get; set; }
 
         public virtual Event Event { get; set; }
-
     }
 }

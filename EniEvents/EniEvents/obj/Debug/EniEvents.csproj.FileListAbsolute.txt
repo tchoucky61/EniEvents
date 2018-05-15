@@ -103,5 +103,5 @@ D:\EniEvents\EniEvents\EniEvents\bin\fr\Microsoft.Owin.Security.MicrosoftAccount
 D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.csprojResolveAssemblyReference.cache
 D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.dll
 D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.pdb
-D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.Migrations.InitialCreate.resources
+D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.Migrations.Migration00.resources
 D:\EniEvents\EniEvents\EniEvents\obj\Debug\EniEvents.csproj.GenerateResource.Cache

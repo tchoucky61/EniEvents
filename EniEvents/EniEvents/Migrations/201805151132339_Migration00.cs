@@ -3,7 +3,7 @@ namespace EniEvents.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Migration00 : DbMigration
     {
         public override void Up()
         {
@@ -13,11 +13,15 @@ namespace EniEvents.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(),
+                        Date = c.DateTime(),
+                        Hour = c.String(),
                         Duration = c.Int(nullable: false),
                         Address = c.String(),
+                        City = c.String(),
+                        Zipcode = c.String(),
                         Description = c.String(),
-                        Lat = c.Int(nullable: false),
-                        Long = c.Int(nullable: false),
+                        Lat = c.String(),
+                        Long = c.String(),
                         Thema_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -46,7 +50,7 @@ namespace EniEvents.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Users",
+                "dbo.Utilisateurs",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -126,16 +130,16 @@ namespace EniEvents.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.UserEvents",
+                "dbo.UtilisateurEvents",
                 c => new
                     {
-                        User_Id = c.Int(nullable: false),
+                        Utilisateur_Id = c.Int(nullable: false),
                         Event_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.User_Id, t.Event_Id })
-                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .PrimaryKey(t => new { t.Utilisateur_Id, t.Event_Id })
+                .ForeignKey("dbo.Utilisateurs", t => t.Utilisateur_Id, cascadeDelete: true)
                 .ForeignKey("dbo.Events", t => t.Event_Id, cascadeDelete: true)
-                .Index(t => t.User_Id)
+                .Index(t => t.Utilisateur_Id)
                 .Index(t => t.Event_Id);
             
         }
@@ -146,12 +150,12 @@ namespace EniEvents.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.UserEvents", "Event_Id", "dbo.Events");
-            DropForeignKey("dbo.UserEvents", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.UtilisateurEvents", "Event_Id", "dbo.Events");
+            DropForeignKey("dbo.UtilisateurEvents", "Utilisateur_Id", "dbo.Utilisateurs");
             DropForeignKey("dbo.Events", "Thema_Id", "dbo.Themas");
             DropForeignKey("dbo.Pictures", "Event_Id", "dbo.Events");
-            DropIndex("dbo.UserEvents", new[] { "Event_Id" });
-            DropIndex("dbo.UserEvents", new[] { "User_Id" });
+            DropIndex("dbo.UtilisateurEvents", new[] { "Event_Id" });
+            DropIndex("dbo.UtilisateurEvents", new[] { "Utilisateur_Id" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -160,13 +164,13 @@ namespace EniEvents.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Pictures", new[] { "Event_Id" });
             DropIndex("dbo.Events", new[] { "Thema_Id" });
-            DropTable("dbo.UserEvents");
+            DropTable("dbo.UtilisateurEvents");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Users");
+            DropTable("dbo.Utilisateurs");
             DropTable("dbo.Themas");
             DropTable("dbo.Pictures");
             DropTable("dbo.Events");

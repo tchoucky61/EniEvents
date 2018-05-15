@@ -10,3 +10,5 @@ D:\EniEvents\EniEvents\Dal\bin\Debug\EntityFramework.SqlServer.xml
 D:\EniEvents\EniEvents\Dal\obj\Debug\Dal.csprojResolveAssemblyReference.cache
 D:\EniEvents\EniEvents\Dal\obj\Debug\Dal.dll
 D:\EniEvents\EniEvents\Dal\obj\Debug\Dal.pdb
+D:\EniEvents\EniEvents\Dal\bin\Debug\fr\EntityFramework.resources.dll
+D:\EniEvents\EniEvents\Dal\bin\Debug\fr\EntityFramework.SqlServer.resources.dll

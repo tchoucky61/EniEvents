@@ -8,3 +8,6 @@ D:\EniEvents\EniEvents\Bo\bin\Debug\EntityFramework.xml
 D:\EniEvents\EniEvents\Bo\bin\Debug\EntityFramework.SqlServer.xml
 D:\EniEvents\EniEvents\Bo\obj\Debug\Bo.dll
 D:\EniEvents\EniEvents\Bo\obj\Debug\Bo.pdb
+D:\EniEvents\EniEvents\Bo\bin\Debug\fr\EntityFramework.resources.dll
+D:\EniEvents\EniEvents\Bo\bin\Debug\fr\EntityFramework.SqlServer.resources.dll
+D:\EniEvents\EniEvents\Bo\obj\Debug\Bo.csprojResolveAssemblyReference.cache

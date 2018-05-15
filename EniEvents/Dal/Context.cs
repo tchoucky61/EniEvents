@@ -10,6 +10,11 @@ namespace Dal
 {
     public class Context : DbContext, IDbContext
     {
+        public Context(): base("DefaultConnection")
+        {
+
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -30,7 +35,7 @@ namespace Dal
             get; set;
         }
 
-        public DbSet<User> Users
+        public DbSet<Utilisateur> Users
         {
             get; set;
         }

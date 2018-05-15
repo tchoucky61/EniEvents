@@ -7,9 +7,9 @@ using Bo;
 
 namespace Bo
 {
-    public class User: IIdentifiable
+    public class Utilisateur: IIdentifiable
     {
-        public User()
+        public Utilisateur()
         {
             this.Events = new List<Event>();
         }

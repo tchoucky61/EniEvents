@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace Dal
 {
     public class GenericRepository<T> : IRepository<T> where T : class, IIdentifiable
     {

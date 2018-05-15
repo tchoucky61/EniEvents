@@ -46,7 +46,7 @@ namespace EniEvents.Models
             get; set;
         }
 
-        public DbSet<User> Users
+        public DbSet<Utilisateur> Users
         {
             get; set;
         }

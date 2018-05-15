@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Bo;
 using Dal;
-using DAL;
+using EniEvents.Models;
+using System.Diagnostics;
 
 namespace EniEvents.Controllers
 {
@@ -16,102 +17,105 @@ namespace EniEvents.Controllers
     {
 
         private IRepository<Event> repoEvent;
+        private IRepository<Thema> repoThema;
+
         Context dbContext = new Context();
         public EventController()
         {
             repoEvent = new GenericRepository<Event>(this.dbContext);
+            repoThema = new GenericRepository<Thema>(this.dbContext);
         }
 
-        // GET: Event
+        // GET: admin/event
+        [Route("admin/event")]
         public ActionResult Index()
         {
             return View(repoEvent.GetAll());
         }
 
-        // GET: Event/Details/5
-        public ActionResult Details(int id)
+        [Route("/admin/event/new")]
+        public ActionResult Create()
+        {
+            var vm = new CreateEditEventVM();
+            vm.Themas = repoThema.GetAll();
+            return View(vm);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("/admin/event/new")]
+        public ActionResult Create(CreateEditEventVM eventVM)
+        {
+            try
+            {
+                if (eventVM.IdSelectedThema.HasValue)
+                    eventVM.Event.Thema = repoThema.GetById(eventVM.IdSelectedThema.Value);
+
+                repoEvent.Insert(eventVM.Event);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return View();
+            }            
+        }
+
+        [Route("/admin/event/edit/{id}")]
+        public ActionResult Edit(int id)
+        {
+            var vm = new CreateEditEventVM();
+            vm.Event = repoEvent.GetById(id);
+            if (vm.Event.Thema != null)
+            {
+                vm.IdSelectedThema = vm.Event.Thema.Id;
+            }
+
+            vm.Themas = repoThema.GetAll();
+
+            return View(vm);
+        }
+
+        [Route("/admin/event/edit/{id}")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CreateEditEventVM vm)
+        {
+            try
+            {
+                if (vm.IdSelectedThema.HasValue)
+                {
+                    vm.Event.Thema = repoThema.GetById(vm.IdSelectedThema.Value);
+                }
+                repoEvent.Update(vm.Event);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [Route("/admin/event/delete/{id}")]
+        public ActionResult Delete(int id)
         {
             return View(repoEvent.GetById(id));
         }
 
-        // GET: Event/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Event/Create
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Duration,Address,Description,Lat,Long")] Event @event)
-        {
-            if (ModelState.IsValid)
-            {
-                dbContext.Events.Add(@event);
-                dbContext.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(@event);
-        }
-
-        // GET: Event/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = dbContext.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
-
-        // POST: Event/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Duration,Address,Description,Lat,Long")] Event @event)
-        {
-            if (ModelState.IsValid)
-            {
-                dbContext.Entry(@event).State = EntityState.Modified;
-                dbContext.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(@event);
-        }
-
-        // GET: Event/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = dbContext.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
-
-        // POST: Event/Delete/5
+        [Route("/admin/event/delete/{id}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Event ev)
         {
-            Event @event = dbContext.Events.Find(id);
-            dbContext.Events.Remove(@event);
-            dbContext.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                repoEvent.Delete(ev.Id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)
