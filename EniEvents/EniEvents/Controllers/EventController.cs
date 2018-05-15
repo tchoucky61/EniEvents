@@ -8,32 +8,30 @@ using System.Web;
 using System.Web.Mvc;
 using Bo;
 using Dal;
+using DAL;
 
 namespace EniEvents.Controllers
 {
     public class EventController : Controller
     {
-        private Context db = new Context();
+
+        private IRepository<Event> repoEvent;
+        Context dbContext = new Context();
+        public EventController()
+        {
+            repoEvent = new GenericRepository<Event>(this.dbContext);
+        }
 
         // GET: Event
         public ActionResult Index()
         {
-            return View(db.Events.ToList());
+            return View(repoEvent.GetAll());
         }
 
         // GET: Event/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
+            return View(repoEvent.GetById(id));
         }
 
         // GET: Event/Create
@@ -51,8 +49,8 @@ namespace EniEvents.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Events.Add(@event);
-                db.SaveChanges();
+                dbContext.Events.Add(@event);
+                dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +64,7 @@ namespace EniEvents.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+            Event @event = dbContext.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -83,8 +81,8 @@ namespace EniEvents.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(@event).State = EntityState.Modified;
-                db.SaveChanges();
+                dbContext.Entry(@event).State = EntityState.Modified;
+                dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(@event);
@@ -97,7 +95,7 @@ namespace EniEvents.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+            Event @event = dbContext.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -110,9 +108,9 @@ namespace EniEvents.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Event @event = db.Events.Find(id);
-            db.Events.Remove(@event);
-            db.SaveChanges();
+            Event @event = dbContext.Events.Find(id);
+            dbContext.Events.Remove(@event);
+            dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +118,7 @@ namespace EniEvents.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                dbContext.Dispose();
             }
             base.Dispose(disposing);
         }

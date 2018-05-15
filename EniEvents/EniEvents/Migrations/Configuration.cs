@@ -9,7 +9,7 @@ namespace EniEvents.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(EniEvents.Models.ApplicationDbContext context)
