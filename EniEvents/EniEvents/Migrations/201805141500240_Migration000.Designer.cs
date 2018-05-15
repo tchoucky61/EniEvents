@@ -13,7 +13,7 @@ namespace EniEvents.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201805141430259_Migration000"; }
+            get { return "201805141500240_Migration000"; }
         }
         
         string IMigrationMetadata.Source

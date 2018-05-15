@@ -50,9 +50,6 @@ namespace EniEvents.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Username = c.String(),
-                        Password = c.String(),
-                        Email = c.String(),
                         Address = c.String(),
                         City = c.String(),
                         Zipcode = c.String(),
