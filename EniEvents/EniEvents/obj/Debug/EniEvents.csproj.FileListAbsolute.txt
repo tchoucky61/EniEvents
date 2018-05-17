@@ -88,8 +88,6 @@ D:\EniEvents\EniEvents\EniEvents\bin\fr\System.Web.Razor.resources.dll
 D:\EniEvents\EniEvents\EniEvents\bin\fr\System.Web.WebPages.resources.dll
 D:\EniEvents\EniEvents\EniEvents\bin\fr\System.Web.WebPages.Deployment.resources.dll
 D:\EniEvents\EniEvents\EniEvents\bin\fr\System.Web.WebPages.Razor.resources.dll
-D:\EniEvents\EniEvents\EniEvents\bin\fr\EntityFramework.resources.dll
-D:\EniEvents\EniEvents\EniEvents\bin\fr\EntityFramework.SqlServer.resources.dll
 D:\EniEvents\EniEvents\EniEvents\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
 D:\EniEvents\EniEvents\EniEvents\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
 D:\EniEvents\EniEvents\EniEvents\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll

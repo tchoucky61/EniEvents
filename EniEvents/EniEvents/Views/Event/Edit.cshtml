@@ -77,15 +77,15 @@
         </div>
 
         <div class="form-group">
+            @Html.HiddenFor(model => model.Event.Lat)
+            @Html.HiddenFor(model => model.Event.Long)
             @Html.LabelFor(model => model.Event.Lat, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.Event.Lat, new { htmlAttributes = new { disabled = "disabled", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Event.Lat, "", new { @class = "text-danger" })
+            <div class="col-md-2">
+                <span id="Event_LatDisplay">@Html.DisplayFor(model => model.Event.Lat)</span>
             </div>
             @Html.LabelFor(model => model.Event.Long, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.Event.Long, new { htmlAttributes = new { disabled = "disabled", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Event.Long, "", new { @class = "text-danger" })
+            <div class="col-md-2">
+                <span id="Event_LongDisplay">@Html.DisplayFor(model => model.Event.Long)</span>
             </div>
         </div>
 
@@ -104,7 +104,7 @@
            {
                Text = $"{t.Title}",
                Value = t.Id.ToString()
-           }), "Selectionnez le thème", new { @class = "form-control" })
+           }), "Sélectionnez le thème", new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
@@ -116,7 +116,7 @@
 }
 
 <div>
-    @Html.ActionLink("Retour à la liste d'événements", "Index")
+    @Html.RouteLink("Annuler", "AdminEventList")
 </div>
 
 @section Scripts {

@@ -11,7 +11,7 @@ namespace Dal
     public class GenericRepository<T> : IRepository<T> where T : class, IIdentifiable
     {
         protected DbContext dbContext;
-        private DbSet<T> set;
+        protected DbSet<T> set;
 
         public GenericRepository(DbContext context)
         {
@@ -46,9 +46,9 @@ namespace Dal
             dbContext.SaveChanges();
         }
 
-        public virtual void Update(T competitor)
+        public virtual void Update(T element)
         {
-            dbContext.Entry(competitor).State = EntityState.Modified;
+            dbContext.Entry(element).State = EntityState.Modified;
             dbContext.SaveChanges();
         }
 

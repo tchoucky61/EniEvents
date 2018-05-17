@@ -12,7 +12,7 @@ namespace Dal
         List<T> GetAll();
         void Insert(T element);
         T GetById(int id);
-        void Update(T competitor);
+        void Update(T element);
         void Delete(int id);
     }
 }

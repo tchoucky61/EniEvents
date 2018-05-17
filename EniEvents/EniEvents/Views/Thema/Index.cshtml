@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<Bo.Thema>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Liste des thèmes";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.RouteLink("Nouveau thème", "AdminThemaNew")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -20,12 +23,14 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            #@Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.RouteLink("Éditer", "AdminThemaEdit", new { id = item.Id }) |
+            @Html.RouteLink("Éditer", "AdminThemaDelete", new { id = item.Id })
         </td>
     </tr>
 }

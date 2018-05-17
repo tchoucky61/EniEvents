@@ -8,119 +8,97 @@ using System.Web;
 using System.Web.Mvc;
 using Bo;
 using Dal;
+using EniEvents.Models;
+using System.Diagnostics;
 
 namespace EniEvents.Controllers
 {
     public class ThemaController : Controller
     {
-        private Context db = new Context();
+        
+        private IRepository<Thema> repoThema;
 
-        // GET: Thema
+        Context dbContext = new Context();
+        public ThemaController()
+        {
+            repoThema = new GenericRepository<Thema>(this.dbContext);
+        }
+
         public ActionResult Index()
         {
-            return View(db.Themas.ToList());
+            return View(repoThema.GetAll());
         }
 
-        // GET: Thema/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Thema thema = db.Themas.Find(id);
-            if (thema == null)
-            {
-                return HttpNotFound();
-            }
-            return View(thema);
-        }
-
-        // GET: Thema/Create
         public ActionResult Create()
         {
-            return View();
+            var vm = new CreateEditThemaVM();
+            return View(vm);
         }
-
-        // POST: Thema/Create
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title")] Thema thema)
+        public ActionResult Create(CreateEditThemaVM vm)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Themas.Add(thema);
-                db.SaveChanges();
+                repoThema.Insert(vm.Thema);
                 return RedirectToAction("Index");
             }
-
-            return View(thema);
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return View();
+            }            
         }
 
-        // GET: Thema/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Thema thema = db.Themas.Find(id);
-            if (thema == null)
-            {
-                return HttpNotFound();
-            }
-            return View(thema);
+            var vm = new CreateEditThemaVM();
+            vm.Thema = repoThema.GetById(id);
+
+            return View(vm);
         }
 
-        // POST: Thema/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title")] Thema thema)
+        public ActionResult Edit(CreateEditThemaVM vm)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(thema).State = EntityState.Modified;
-                db.SaveChanges();
+                repoThema.Update(vm.Thema);
                 return RedirectToAction("Index");
             }
-            return View(thema);
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: Thema/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Thema thema = db.Themas.Find(id);
-            if (thema == null)
-            {
-                return HttpNotFound();
-            }
-            return View(thema);
+            return View(repoThema.GetById(id));
         }
 
-        // POST: Thema/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Thema th)
         {
-            Thema thema = db.Themas.Find(id);
-            db.Themas.Remove(thema);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                repoThema.Delete(th.Id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                dbContext.Dispose();
             }
             base.Dispose(disposing);
         }

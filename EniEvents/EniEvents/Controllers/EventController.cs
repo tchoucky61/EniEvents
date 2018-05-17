@@ -22,18 +22,15 @@ namespace EniEvents.Controllers
         Context dbContext = new Context();
         public EventController()
         {
-            repoEvent = new GenericRepository<Event>(this.dbContext);
+            repoEvent = new EventRepository(this.dbContext);
             repoThema = new GenericRepository<Thema>(this.dbContext);
         }
 
-        // GET: admin/event
-        [Route("admin/event")]
         public ActionResult Index()
         {
             return View(repoEvent.GetAll());
         }
 
-        [Route("/admin/event/new")]
         public ActionResult Create()
         {
             var vm = new CreateEditEventVM();
@@ -43,7 +40,6 @@ namespace EniEvents.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/admin/event/new")]
         public ActionResult Create(CreateEditEventVM eventVM)
         {
             try
@@ -60,8 +56,7 @@ namespace EniEvents.Controllers
                 return View();
             }            
         }
-
-        [Route("/admin/event/edit/{id}")]
+        
         public ActionResult Edit(int id)
         {
             var vm = new CreateEditEventVM();
@@ -76,7 +71,7 @@ namespace EniEvents.Controllers
             return View(vm);
         }
 
-        [Route("/admin/event/edit/{id}")]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CreateEditEventVM vm)
@@ -96,14 +91,12 @@ namespace EniEvents.Controllers
             }
         }
 
-        [Route("/admin/event/delete/{id}")]
         public ActionResult Delete(int id)
         {
             return View(repoEvent.GetById(id));
         }
-
-        [Route("/admin/event/delete/{id}")]
-        [HttpPost, ActionName("Delete")]
+        
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Event ev)
         {

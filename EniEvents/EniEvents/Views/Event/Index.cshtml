@@ -7,10 +7,13 @@
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Créer un nouvel événement", "Create")
+    @Html.RouteLink( "Nouvel événement", "AdminEventNew")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -29,6 +32,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            #@Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
@@ -41,8 +47,8 @@
             @Html.DisplayFor(modelItem => item.Thema.Title)
         </td>
         <td>
-            @Html.ActionLink("Éditer", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Supprimer", "Delete", new { id=item.Id })
+            @Html.RouteLink("Éditer", "AdminEventEdit", new { id = item.Id }) |
+            @Html.RouteLink("Supprimer", "AdminEventDelete", new { id = item.Id }) |
         </td>
     </tr>
 }
