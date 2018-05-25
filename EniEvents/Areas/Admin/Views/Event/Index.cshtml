@@ -1,0 +1,77 @@
+﻿@model PagedList.IPagedList<Bo.Event>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Liste des événements";
+}
+
+<h2 class="no-padding">@ViewBag.Title</h2>
+
+<p>
+    @Html.RouteLink("Nouvel événement", new { area = "Admin", controller = "Event", action = "Create" }, new { @class = "btn green" })
+</p>
+@using (Html.BeginForm("Index", "Event", FormMethod.Get))
+{
+    <div class="row no-padding">
+        <div class="col s12 m9 input-field right-align no-margin no-padding">
+            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        </div>
+        <div class="col s12 m3 input-field no-margin">
+            <input type="submit" value="Filtrer" class="btn  green darken-1 btn-wide" />
+        </div>        
+    </div>
+}
+
+<table class="striped highlight">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            <i class="material-icons grey-text text-darken-2" style="vertical-align: middle">sort</i> @Html.ActionLink("Titre", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "grey-text text-darken-2" })
+        </th>
+        <th>
+            <i class="material-icons grey-text text-darken-2" style="vertical-align: middle">sort</i> @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "grey-text text-darken-2" })
+        </th>
+        <th>
+            Durée
+        </th>
+        <th>
+            <i class="material-icons grey-text text-darken-2" style="vertical-align: middle">sort</i> @Html.ActionLink("Thème", "Index", new { sortOrder = ViewBag.ThemaSortParm, currentFilter = ViewBag.CurrentFilter }, new { @class = "grey-text text-darken-2" })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                #@Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thema.Title)
+            </td>
+            <td>
+                @Html.RouteLink("Éditer", new { area = "Admin", controller = "Event", action = "Edit", id = item.Id }, new { @class = "btn green darken-1" })
+                @Html.RouteLink("Supprimer", new { area = "Admin", controller = "Event", action = "Delete", id = item.Id }, new { @class = "btn grey", @style = "margin-left:20px;" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="right-align">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) sur @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+

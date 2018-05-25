@@ -1,0 +1,25 @@
+﻿@model Bo.Thema
+
+@{
+    ViewBag.Title = "Supprimer un thème";
+}
+
+<h2 class="no-padding">@ViewBag.Title</h2>
+
+<h3>Êtes-vous sûr de vouloir supprimer le thème @Html.DisplayFor(model => model.Title) ?</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col s12 center-align">
+            <input type="submit" value="Supprimer" class="btn green darken-1" />@Html.RouteLink("Annuler", new { area = "Admin", controller = "Thema", action = "Index" }, new { @class = "btn grey", @style = "margin-left:20px;" })
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

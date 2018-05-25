@@ -1,0 +1,117 @@
+﻿@model EniEvents.Areas.Admin.Models.CreateEditEventVM
+@using Bo
+@{
+    ViewBag.Title = "Création d'événement";
+}
+
+<h2 class="no-padding">@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Create", "Event", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col s12 input-field">
+                @Html.LabelFor(model => model.Event.Title)
+                @Html.EditorFor(model => model.Event.Title)
+                @Html.ValidationMessageFor(model => model.Event.Title, "", new { @class = "red-text"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 input-field">
+                @Html.LabelFor(model => model.Themas, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.DropDownListFor(model => model.IdSelectedThema, Model.Themas.Select(t => new SelectListItem
+               {
+                   Text = $"{t.Title}",
+                   Value = t.Id.ToString()
+               }), "Selectionnez le thème", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 input-field">
+                @Html.LabelFor(model => model.Event.Date)
+                @Html.EditorFor(model => model.Event.Date)
+                @Html.ValidationMessageFor(model => model.Event.Date, "", new { @class = "red-text" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6 input-field">
+                @Html.LabelFor(model => model.Event.Hour)
+                @Html.EditorFor(model => model.Event.Hour, new { placeholder = "Heure de début au format HH:MM" })
+                @Html.ValidationMessageFor(model => model.Event.Hour, "", new { @class = "red-text"})
+            </div>
+            <div class="col s12 m6 input-field">
+                @Html.LabelFor(model => model.Event.Duration)
+                @Html.EditorFor(model => model.Event.Duration, new { placeholder = "Durée en heures" })
+                @Html.ValidationMessageFor(model => model.Event.Duration, "", new { @class = "red-text" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 input-field">
+                @Html.LabelFor(model => model.Event.Description)
+                @Html.TextAreaFor(model => model.Event.Description, new { @class = "materialize-textarea" })
+                @Html.ValidationMessageFor(model => model.Event.Description, "", new { @class = "red-text" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 input-field">
+                @Html.LabelFor(model => model.Event.Address)
+                @Html.TextAreaFor(model => model.Event.Address, new { @class = "materialize-textarea" })
+                @Html.ValidationMessageFor(model => model.Event.Address, "", new { @class = "red-text" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6 input-field">
+                @Html.LabelFor(model => model.Event.Zipcode)
+                @Html.EditorFor(model => model.Event.Zipcode)
+                @Html.ValidationMessageFor(model => model.Event.Zipcode, "", new { @class = "red-text" })
+            </div>
+            <div class="col s12 m6 input-field">
+                @Html.LabelFor(model => model.Event.City)
+                @Html.EditorFor(model => model.Event.City)
+                @Html.ValidationMessageFor(model => model.Event.City, "", new { @class = "red-text" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.HiddenFor(model => model.Event.Lat)
+            @Html.HiddenFor(model => model.Event.Long)
+            <div class="col s12 m4">
+                <input type="button" value="Géolocaliser" class="btn green darken-2" id="geolocateEventBtn" />
+            </div>
+            <div class="col s12 m4 input-field no-margin">
+                <label for="Event_LatDisplay" class="">Latitude</label>
+                <input class="text-box single-line" id="Event_LatDisplay" type="text" value="" disabled>
+            </div>
+            <div class="col s12 m4 input-field no-margin">
+                <label for="Event_LongDisplay" class="">Logitude</label>
+                <input class="text-box single-line" id="Event_LongDisplay" type="text" value="" disabled>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col s12">
+                @Html.Label("Images")
+            </div>
+            <div class="col s12 file-field input-field">
+                <div class="btn green darken-1">
+                    <span>File</span>
+                    <input type="file" id="picture" name="upload" multiple="multiple" />
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 center-align">
+                <input type="submit" value="Créer" class="btn green darken-1" />@Html.RouteLink("Annuler", new { area = "Admin", controller = "Event", action = "Index" }, new { @class = "btn grey", @style = "margin-left:20px;" })
+            </div>
+        </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

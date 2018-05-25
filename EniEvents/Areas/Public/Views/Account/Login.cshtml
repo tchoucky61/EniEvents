@@ -1,0 +1,45 @@
+﻿@using EniEvents.Areas.Public.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Me connecter";
+}
+
+<h2>@ViewBag.Title</h2>
+<section id="loginForm">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col s12 input-field">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "red-text" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 input-field">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red-text" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 input-field checkbox">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 center-align">
+                <input type="submit" value="Connexion" class="btn green darken-1" />
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("S'inscrire comme nouvel utilisateur", "Register")
+        </p>
+        }
+    </section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

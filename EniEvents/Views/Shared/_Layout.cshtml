@@ -1,0 +1,53 @@
+﻿@{ var user = System.Web.HttpContext.Current.User; }
+@using Bo
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rennes Events</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @Styles.Render("~/bundles/materializeStyles")
+    @Styles.Render("~/bundles/styles")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/materialize")
+    @Scripts.Render("~/bundles/custom")
+    @RenderSection("scripts", required: false)
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_7BsCOJKiwRPrRWoPMCm8C7QqLO_4Y-4&callback=initEventMap">
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="brand-logo"  style="margin-left: 15px;"><i class="material-icons">star</i> @Html.ActionLink("Rennes events !", "Index", "Home", new { area = "Public" }, new { @class = "bernadette", @style = "margin-left: 10px;" })</div>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                @if (user != null && user.IsInRole(UserRoles.ROLE_ADMIN))
+                {
+                    <li>@Html.RouteLink("Événements", new { area = "Admin", controller = "Event", action = "Index" })</li>
+                    <li>@Html.RouteLink("Thèmes", new { area = "Admin", controller = "Thema", action = "Index" })</li>
+                }
+                <li>@Html.Partial("_LoginPartial")</li>       
+            </ul>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <ul class="sidenav" id="mobile-nav">
+        <li>@Html.RouteLink("Accueil", new { area = "Public", controller = "Home", action = "Index" })</li>
+        @if (user != null && user.IsInRole(UserRoles.ROLE_ADMIN))
+        {
+            <li>@Html.RouteLink("Événements", new { area = "Admin", controller = "Event", action = "Index" })</li>
+            <li>@Html.RouteLink("Thèmes", new { area = "Admin", controller = "Thema", action = "Index" })</li>
+        }
+        <li>@Html.Partial("_LoginPartial")</li>
+    </ul>
+    <div class="container">
+        @RenderBody()      
+    </div>
+</body>
+</html>

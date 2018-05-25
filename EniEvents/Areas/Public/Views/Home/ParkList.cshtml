@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Bo.Park>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="park">
+        <div class="park--symbol">P</div>
+        <div class="park--name">@Html.DisplayFor(modelPark => item.Name)</div>
+        <div class="park--free">@Html.DisplayFor(modelPark => item.Free) places libres sur @Html.DisplayFor(modelPark => item.Max)</div>
+        <div class="park--schedule">Horaires: @Html.DisplayFor(modelPark => item.Schedule)</div>
+        <div class="park--cost">Tarif estimé : @Html.DisplayFor(modelPark => item.Cost) €</div>
+        <div class="park--distance"><strong>Votre trajet :</strong></div>
+
+        <div class="park--road">
+            <i class="park--start-marker material-icons">flag</i>
+            <div class="park--start-distance-first"><i class="material-icons">directions_car</i> @String.Format("{0:0.00}", @item.DistanceToStart / 1000.00) km</div>
+            <i class="park--park-marker material-icons">local_parking</i>
+            <div class="park--start-distance-second"><i class="material-icons">directions_walk</i> @String.Format("{0:0.00}", @item.DistanceToEvent / 1000.00) km</div>
+            <i class="park--event-marker material-icons">star</i>
+        </div>
+
+    </div>
+}
+

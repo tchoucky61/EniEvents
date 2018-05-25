@@ -1,0 +1,495 @@
+﻿html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* fonts */
+@font-face {
+ font-family: "bernadette";
+ src: url("/Content/fonts/bernadette-webfont.woff") format("woff"),
+    url("/Content/fonts/bernadette-webfont.woff2") format("woff2");
+}
+
+.bernadette {
+    font-family: bernadette, Arial, Helvetica, sans-serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.fixed {
+    position: fixed;
+    z-index: 1;
+}
+
+.full {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.fixed.home {
+    top: 64px;
+}
+
+#eventSearch {
+    width: 70%;
+    left: 15%;
+    bottom: 50px;
+    padding: 25px 30px;
+    box-shadow: rgba(0, 0, 0,.2) 0 0 16px;
+}
+
+#eventSearch .row {
+    margin-bottom: 0;
+}
+
+#eventSearch .search--title {
+    font-size: 2rem;
+}
+
+#eventSearch .search--result span {
+    font-size: 1.2rem;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 40px;
+}
+
+nav {
+    z-index: 9999;
+    background-color: rgb(50, 29, 71) !important;
+}
+
+.select-wrapper {
+    background-color: rgb(255,255,255);
+}
+
+#eventSearch .select-wrapper input.select-dropdown {
+    padding-left: 10px;
+    padding-right: 5px;
+    border-bottom-width: 0;
+}
+
+.gm-style-iw {
+    padding-bottom: 10px;
+    max-width: 350px;
+}
+
+.infowindow--title {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+}
+
+.infowindow--thema {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    text-transform: uppercase;
+    float: left;
+    padding-top: 40px;
+    border-radius: 4px;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.infowindow--thema div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.infowindow--content {
+    font-size: .9rem;
+    float: none;
+    margin-left: 120px;
+    min-width: 150px;
+    text-align: justify;
+}
+
+.infowindow--link {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.thema-0 {
+    background-color: rgb(155, 35, 67);
+}
+
+.thema-1 {
+    background-color: rgb(155, 175, 51);
+}
+
+.thema-2 {
+    background-color: rgb(221, 189, 28);
+}
+
+.thema-3 {
+    background-color: rgb(202, 130, 216);
+}
+
+.thema-4 {
+    background-color: rgb(206, 67, 39);
+}
+
+.thema-5 {
+    background-color: rgb(95, 67, 168);
+}
+
+.thema-6 {
+    background-color: rgb(247, 222, 59);
+}
+
+/* Modal */
+.modal {
+    height: 80% !important;
+    max-height: 80% !important;
+    width: 80% !important;
+    z-index: 999999;
+}
+
+.modal-fixed-footer .modal-footer {
+    position: fixed;
+}
+
+/* Helpers */
+.no-margin {
+    margin: 0!important;
+}
+
+/* Event */
+.event--short-date {
+    float: left;
+    width: 80px;
+    height: 80px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 15px;
+    background: rgb(50, 29, 71);
+    color: #fff;
+    line-height: 1;
+}
+
+.event--short-date span:nth-child(2) {
+    text-transform: uppercase;
+}
+
+.event--header {
+    margin: -24px -24px 0;
+    padding: 24px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.event--pictures {
+    overflow: hidden;
+}
+
+.event--picture {
+    height: 80px;
+    width: 80px;    
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+    float: left;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    opacity: .5;
+    transition: all 300ms;
+}
+
+.event--picture:hover,
+.event--picture.selected  {
+    opacity: 1;
+}
+
+.event--picture + .event--picture {
+    margin-left: 15px;
+}
+
+.event--title {
+    float: none;
+    margin-left: 95px;
+    padding-bottom: 10px;
+    font-size: 2.5rem;
+    width: auto;
+    min-height: 150px;
+    padding-top: 50px;
+}
+
+.event--description,
+.event--date,
+.event--place {
+    position: relative;
+    margin-left: 70px;
+    margin-bottom: 15px;
+}
+
+.event--description {
+    text-align: justify;
+}
+
+.event--short-date {
+    margin-top: 30px;
+}
+
+.event--description span,
+.event--date span,
+.event--place span {
+    position: absolute;
+    left: -70px;
+    font-weight: bold;
+}
+
+.event--thema {
+    position: absolute;
+    display: inline-block;
+    padding: 2px 4px;
+    color: #fff;
+    font-family: Roboto;
+    font-size: 1.4rem;
+    margin-left: 10px;
+    text-shadow: none;
+    right: 10px;
+    top: 24px;
+}
+
+.event--parks {
+    background: rgb(237, 235, 230);
+    padding: 10px;
+}
+
+.event--parks span {
+    font-weight: 600;
+}
+
+.park {
+    margin: 10px 10px;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.park:last-child {
+    border-bottom-width: 0;
+    padding-bottom: 0;
+}
+
+.park--symbol {
+    float: left;
+    height: 40px;
+    width: 40px;
+    font-size: 2rem;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background: rgb(46, 65, 173);
+}
+
+.form-event--picture {
+    position: relative;
+    float: left;
+    height: 106px;
+    width: auto;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 2px;
+    overflow: hidden;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.form-event--picture-delete {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 2px;    
+    border: 1px solid #ccc;
+    height: 14px;
+    width: 14px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.form-event--picture-delete:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 1px;
+    width: 12px;
+    height: 1px;
+    background: #ccc;
+    transform: rotate(45deg);
+}
+.form-event--picture-delete:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 6px;
+    width: 12px;
+    height: 1px;
+    right: 1px;
+    background: #ccc;
+    transform: rotate(-45deg);
+}
+
+.park--name,
+.park--distance,
+.park--free,
+.park--schedule,
+.park--cost,
+.park--road {
+    float: none;
+    margin-left: 60px;
+}
+
+.park--distance {
+    margin: 10px 0 10px 60px;
+}
+
+.park--road {
+    position: relative;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+
+.park--road:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    bottom: 8px;
+    height: 0px;
+    border-top: 1px dashed #ccc;
+}
+
+.park--road div,
+.park--road i {
+    display: inline-block;
+    vertical-align: middle;
+    background: rgb(237, 235, 230);
+    min-height: 20px;
+    min-width: 20px;
+}
+
+.park--start-marker {
+    position: absolute;
+    left: 0;
+}
+
+.park--start-distance-first {
+    position: absolute;
+    left: 25%;
+    padding: 0 4px;
+}
+.park--start-distance-second {
+    position: absolute;
+    right: 25%;
+    padding: 0 4px;
+}
+
+.park--park-marker {
+    position: absolute;
+    left: 50%;
+}
+
+
+.park--event-marker {
+    position: absolute;
+    right: 0;
+}
+
+.park--name {
+    font-weight: bold;
+}
+
+.gm-style-mtc {
+    display: none;
+}
+
+@media only screen and (min-width: 993px) {
+    .container {
+       width: 90%;
+    }
+}
+
+.user-initial {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    font-size: 1.75rem;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-top: 3px;
+}
+
+h1, h2, h3, h4 {
+    color: rgb(50, 29, 71) !important;
+    padding: 0 .75rem;
+}
+
+h2 {
+   font-size: 2.8rem;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(50, 29, 71, .8) !important;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgba(50, 29, 71, .8) !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgba(50, 29, 71, .8) !important;
+}
+
+.btn-wide {
+    width: 100%;
+}

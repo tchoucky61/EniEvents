@@ -1,0 +1,64 @@
+﻿@model EniEvents.Areas.Public.Models.EventDetailsVM
+@{
+    Layout = null;
+}
+@{ 
+    var eventHeaderStyle = "";
+    var eventPictureUrl = "";
+    var userAddress = "";
+}
+@if (Model.Event.Pictures.Count > 0)
+{
+    eventHeaderStyle = "background-image: url(/Content/media/img/" + @Model.Event.Pictures[0].FileName + ");color: #fff !important;text-shadow: 0 0 3px #000;";
+}
+@if (Request.IsAuthenticated)
+{
+    userAddress = Model.Utilisateur.Address + ", " + Model.Utilisateur.Zipcode + " " + Model.Utilisateur.City;
+}
+<span class="hiddendiv" id="eventId">@Model.Event.Id</span>
+<div class="event--header" style="@eventHeaderStyle">
+    <div class="event--short-date">
+        <div>@Model.Event.Date.Value.ToString("M")</div>
+        <div>@Model.Event.Date.Value.ToString("yyyy")</div>
+    </div>
+    <div class="event--title bernadette">
+        @Model.Event.Title
+    </div>
+    <div class="event--thema thema-@Model.Event.Thema.Id ">@Model.Event.Thema.Title</div>
+</div>
+
+
+<div class="event--pictures">
+    @foreach (var picture in Model.Event.Pictures)
+    {
+        eventPictureUrl = "/Content/media/img/" + picture.FileName;
+        <div class="event--picture" style="background-image:url(@eventPictureUrl)" data-picture-url="@eventPictureUrl"></div>
+    }
+</div>
+
+<div class="event--date">
+    <span>Quand ?</span>A partir de @Model.Event.Hour le @Model.Event.Date.Value.ToString("dd/MM/yyyy") - Durée : @Model.Event.Duration heures
+</div>
+<div class="event--description">
+    <span>Quoi ?</span>@Model.Event.Description
+</div>
+<div class="event--place">
+    <span>Où ?</span>
+    @Model.Event.Address<br />
+    @Model.Event.Zipcode @Model.Event.City
+</div>
+<div class="event--parks">
+    <div class="row no-margin">
+        <span class="col s12">Je viens en voiture : Où puis-je me garer ?</span>
+    </div> 
+    <div class="row no-margin">
+        <div class="col s12 m11 input-field">
+            <input class="text-box single-line" id="userAddress" type="text" value="@userAddress" placeholder="Je renseigne mon addresse">
+        </div>
+        <div class="col s12 m1 input-field padding-top-5">
+            <button class="btn orange darken-4" id="getParkListBtn"><i class="material-icons">location_searching</i></button>
+        </div>
+    </div>
+    <div id="eventParkList" class="row">
+    </div>
+</div>

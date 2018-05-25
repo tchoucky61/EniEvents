@@ -1,0 +1,3 @@
+il faut l'EntityFramework version 2 pour installer PatgeList
+
+Install-Package PagedList.Mvc -Version 4.5.0

@@ -1,0 +1,71 @@
+﻿@model EniEvents.Areas.Public.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Créer mon compte Rennes Events !";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col s12 input-field">
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 input-field">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 input-field">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 input-field">
+            @Html.LabelFor(m => m.ConfirmPassword)
+            @Html.PasswordFor(m => m.ConfirmPassword)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 input-field">
+            @Html.LabelFor(model => model.Utilisateur.Address)
+            @Html.TextAreaFor(model => model.Utilisateur.Address, new { @class = "materialize-textarea" })
+            @Html.ValidationMessageFor(model => model.Utilisateur.Address, "", new { @class = "red-text" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6 input-field">
+            @Html.LabelFor(model => model.Utilisateur.Zipcode)
+            @Html.EditorFor(model => model.Utilisateur.Zipcode)
+            @Html.ValidationMessageFor(model => model.Utilisateur.Zipcode, "", new { @class = "red-text" })
+        </div>
+        <div class="col s12 m6 input-field">
+            @Html.LabelFor(model => model.Utilisateur.City)
+            @Html.EditorFor(model => model.Utilisateur.City)
+            @Html.ValidationMessageFor(model => model.Utilisateur.City, "", new { @class = "red-text" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 input-field">
+            @Html.LabelFor(model => model.Utilisateur.Phone)
+            @Html.EditorFor(model => model.Utilisateur.Phone)
+            @Html.ValidationMessageFor(model => model.Utilisateur.Phone, "", new { @class = "red-text" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn green darken-1" value="S’inscrire" />@Html.RouteLink("Annuler", new { area = "Public", controller = "Home", action = "Index" }, new { @class = "btn grey", @style = "margin-left:20px;" })
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
